@@ -1,0 +1,172 @@
+<!-- <app-banner></app-banner> -->
+<div class="container">
+  <div class="headerContainer">
+    <label for="Personaldetails" class="heading">Personal Details</label>
+  </div>
+
+  <!-- Card to contain the form -->
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="registrationForm">
+        
+        <!-- First Row: 3 Columns -->
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <!-- <app-custom-input [for]="'FirstName'" [label]="'First Name'" [id]="'FirstName'" [type]="'text'"/> -->
+            <div>
+              <label for="firstName" class="form-label">First Name</label>
+              <input type="text" id="firstName" class="form-control" formControlName="firstName" name="firstName">
+            </div>
+            <div *ngIf="registrationForm.get('firstName')?.invalid && registrationForm.get('firstName')?.touched">
+              <small class="text-danger">{{ errorMessages.requiredFiledError }}</small>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" id="lastName" class="form-control" formControlName="firstName" name="lastName">
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label for="dob" class="form-label">Date of Birth</label>
+            <input 
+              type="date" 
+              id="dob" 
+              class="form-control" 
+              formControlName="dob" 
+              name="dob"
+              (input)="onDateChange($event)" 
+            />
+            <div *ngIf="registrationForm.get('dob')?.invalid && registrationForm.get('dob')?.touched">
+              <small class="text-danger">
+                {{ errorMessages.requiredFiledError }}
+              </small>
+              <small class="text-danger" *ngIf="registrationForm.get('dob')?.hasError('pattern')">
+                {{ errorMessages.invalidDateError }}
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Second Row: 3 Columns -->
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label for="gender" class="form-label">Gender</label>
+            <select id="gender" class="form-control" formControlName="gender" name="gender">
+              <option value="" disabled selected>Select Gender</option>
+              <option *ngFor="let option of genderOptions" [value]="option.value">{{ option.label }}</option>
+            </select>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="tel" id="phone" class="form-control" formControlName="phoneNumber" name="phone">
+            <div *ngIf="registrationForm.get('phoneNumber')?.hasError('required') && registrationForm.get('phoneNumber')?.touched">
+              <small class="text-danger">{{ errorMessages.requiredFiledError }}</small>
+          </div>
+          <small class="text-danger" *ngIf="registrationForm.get('phoneNumber')?.hasError('pattern') || registrationForm.get('phoneNumber')?.hasError('maxlength')">
+            {{ errorMessages.invalidPhoneError}}
+          </small>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label for="bloodGroup" class="form-label">Blood Group</label>
+            <select id="bloodGroup" class="form-control" formControlName="bloodGroup" name="bloodGroup">
+              <option value="" disabled selected>Select Blood Group</option>
+              <option *ngFor="let option of bloodGroupOptions" [value]="option.value">{{ option.label }}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Third Row: 3 Columns -->
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label for="chronicIllness" class="form-label">Existing Chronic Illness</label>
+            <select id="chronicIllness" class="form-control" formControlName="chronicIllness" name="chronicIllness" (change)="onSelectChronicIllness($event)">
+              <option value="" disabled selected>Select Chronic Illness</option>
+              <option *ngFor="let option of chronicIllnessesOptions" [value]="option.value">{{ option.label }}</option>
+            </select>
+
+            <div *ngIf="selectedChronicIllnesses.length > 0">
+              <div class="selected-items">
+                <div *ngFor="let illness of selectedChronicIllnesses" class="selected-item">
+                  <span>{{ illness }}</span>
+                  <button type="button" class="btn btn-danger btn-sm" (click)="removeChronicIllness(illness)">X</button>
+                </div>
+              </div>
+            </div>
+          </div>          
+          <div class="col-md-4 mb-3">
+            <label for="address" class="form-label">Address</label>
+            <textarea rows="3" placeholder="Home address" class="form-control" formControlName="address" name="address"></textarea>
+            <div *ngIf="registrationForm.get('address')?.invalid && registrationForm.get('address')?.touched">
+              <small class="text-danger">{{ errorMessages.requiredFiledError }}</small>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="preferredHospital" class="form-label">Preferred Hospital</label>
+            <textarea rows="3" placeholder="Hospital Name & address" class="form-control" formControlName="preferredHospital" name="preferredHospital"></textarea>
+          </div>
+        </div>
+
+        <!-- Fourth Row: 3 Columns -->
+        <div class="row">
+          
+          <div class="col-md-3 mb-3">
+            <label for="medications" class="form-label">Medications Taking</label>
+            <input type="text" id="medications" class="form-control" formControlName="medications" name="medications">
+          </div>
+
+        
+          <div class="col-md-3 mb-3">
+            <label for="primaryDoctorName" class="form-label">Primary Doctor Name</label>
+            <input type="text" id="primaryDoctorName" class="form-control" formControlName="primaryDoctorName" name="primaryDoctorName">
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <label for="primaryDoctorContact" class="form-label">Primary Doctor Contact</label>
+            <input type="text" id="primaryDoctorContact" class="form-control" formControlName="primaryDoctorContact" name="primaryDoctorContact">
+          </div>
+          
+          <div class="col-md-3 mb-3">
+            <label for="disabilities" class="form-label">Disabilities</label>
+            <input type="text" id="disabilities" class="form-control" formControlName="disabilities" name="disabilities">
+          </div>
+        </div>
+        <hr>
+        <div class="headerContainer">
+          <label for="InsuranceDetails" class="heading">Insurance</label>
+        </div>
+        <div class="row">
+          <div class="col-md-3 mb-3">
+            <label for="primaryDoctorName" class="form-label">Insurance Provider</label>
+            <input type="text" id="primaryDoctorName" class="form-control" formControlName="insuranceProvider" name="primaryDoctorName">
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <label for="primaryDoctorContact" class="form-label">Policy Number</label>
+            <input type="text" id="primaryDoctorContact" class="form-control" formControlName="policyNumber" name="primaryDoctorContact">
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <label for="preferredHospital" class="form-label">Policy Expiry Date</label>
+            <input type="date" id="preferredHospital" class="form-control" formControlName="policyExpiry" name="preferredHospital">
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="preferredHospital" class="form-label">Coverage Type</label>
+            <input type="text" id="preferredHospital" class="form-control" formControlName="coverageType" name="preferredHospital">
+          </div>
+        </div>
+
+        <app-family-member [primaryMemberData]="primaryMemberData" *ngIf="this.primaryMemberData"></app-family-member>
+
+        <div class="row" *ngIf="!this.primaryMemberData">
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-primary" (click)="addPrimaryMember()" [disabled]="registrationForm.invalid">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<app-modal #successModal></app-modal>

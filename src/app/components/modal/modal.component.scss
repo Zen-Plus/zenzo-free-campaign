@@ -1,0 +1,29 @@
+/* Success Modal */
+.modal-success .modal-header {
+    background-color: #28a745;  /* Green for success */
+    color: white;
+}
+  
+.modal-success .modal-footer .btn-primary {
+    background-color: #28a745;  /* Green */
+}
+  
+  /* Failure Modal */
+.modal-failure .modal-header {
+    background-color: #dc3545;  /* Red for failure */
+    color: white;
+}
+  
+.modal-failure .modal-footer .btn-primary {
+    background-color: #dc3545;  /* Red */
+}
+  
+.modal-body {
+    font-size: 16px;
+    text-align: center;
+}
+  
+.modal-title {
+    font-weight: bold;
+}
+  

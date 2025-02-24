@@ -1,0 +1,133 @@
+
+<div *ngIf="primaryMemberData">
+    <hr>
+    <form [formGroup]="familyMemberForm" (ngSubmit)="addFamilyMember()">
+        <div class="headerContainer">
+        <label for="InsuranceDetails" class="form-label heading">Family Members</label>
+        </div>
+        <div class="row">
+        <div class="col-md-3 mb-3">
+            <label for="primaryDoctorName" class="form-label">Name</label>
+            <input type="text" id="primaryDoctorName" class="form-control" formControlName="firstName" name="primaryDoctorName">
+            <div *ngIf="familyMemberForm.get('firstName')?.invalid && familyMemberForm.get('firstName')?.touched">
+                <small class="text-danger">{{ errorMessages.requiredFiledError }}</small>
+            </div>
+        </div>
+    
+        <div class="col-md-3 mb-3">
+            <label for="dob" class="form-label">Date of Birth</label>
+            <input 
+                type="date" 
+                id="dob" 
+                class="form-control" 
+                formControlName="dob" 
+                name="dob" 
+                (input)="onDateChange($event)" 
+            />
+            <div *ngIf="familyMemberForm.get('dob')?.invalid && familyMemberForm.get('dob')?.touched">
+                <small class="text-danger">
+                {{ errorMessages.requiredFiledError }}
+                </small>
+                <small class="text-danger" *ngIf="familyMemberForm.get('dob')?.hasError('pattern')">
+                {{ errorMessages.invalidDateError }}
+                </small>
+            </div>
+        </div>
+    
+        <div class="col-md-3 mb-3">
+            <label for="gender" class="form-label">Gender</label>
+            <select id="gender" class="form-control" formControlName="gender" name="gender">
+            <option value="" disabled selected>Select Gender</option>
+            <option *ngFor="let option of genderOptions" [value]="option.value">{{ option.label }}</option>
+            </select>
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="preferredHospital" class="form-label">Phone Number</label>
+            <input type="text" id="preferredHospital" class="form-control" formControlName="mobileNumber" name="preferredHospital">
+        </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-3 mb-3">
+                <label for="Relationship" class="form-label">Relationship</label>
+                <select id="Relationship" class="form-control" formControlName="relationWithUser" name="Relationship">
+                <option value="" disabled selected>Select Relationship</option>
+                <option *ngFor="let option of relationshipOptions" [value]="option.value">{{ option.label }}</option>
+                </select>
+            </div>
+            
+            <div class="col-md-3 mb-3">
+                <label for="bloodGroup" class="form-label">Blood Group</label>
+                <select id="bloodGroup" class="form-control" formControlName="bloodGroup" name="bloodGroup">
+                <option value="" disabled selected>Select bloodGroup</option>
+                <option *ngFor="let option of bloodGroupOptions" [value]="option.value">{{ option.label }}</option>
+                </select>
+            </div>
+            
+            <div class="col-md-3 mb-3">
+                <label for="preferredHospital" class="form-label">Policy Number</label>
+                <input type="text" id="preferredHospital" class="form-control" formControlName="policyNumber" name="preferredHospital">
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <label for="existingChronicIllness" class="form-label">Existing Chronic Illness</label>
+                <select id="existingChronicIllness" class="form-control" formControlName="existingChronicIllness" name="existingChronicIllness" (change)="onSelectChronicIllness($event)">
+                  <option value="" disabled selected>Select Chronic Illness</option>
+                  <option *ngFor="let option of chronicIllnessesOptions" [value]="option.value">{{ option.label }}</option>
+                </select>
+    
+                <div *ngIf="selectedChronicIllnesses.length > 0">
+                  <div class="selected-items">
+                    <div *ngFor="let illness of selectedChronicIllnesses" class="selected-item">
+                      <span>{{ illness }}</span>
+                      <button type="button" class="btn btn-danger btn-sm" (click)="removeChronicIllness(illness)">X</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: space-around;">
+            <button type="submit" class="btn btn-primary">{{ isEditing ? 'Update Member' : 'Add Member' }}</button>
+        </div>
+    </form>
+  
+  <!-- Family Members Table -->
+    <div class="table-responsive mt-4" *ngIf="this.familyMembers.length > 0"> 
+        <table class="table table-bordered">
+        <thead>
+            <tr>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Gender</th>
+            <th>Phone Number</th>
+            <th>Relationship</th>
+            <th>Chronic Illness</th>
+            <th>Policy Number</th>
+            <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let member of familyMembers; let i = index">
+            <td>{{ member.firstName }}</td>
+            <td>{{ member.dob | date:'yyyy-MM-dd' }}</td>
+            <td>{{ member.gender }}</td>
+            <td>{{ member.mobileNumber }}</td>
+            <td>{{ member.relationWithUser }}</td>
+            <td>{{ member.existingChronicIllness }}</td>
+            <td>{{ member.policyNumber }}</td>
+            <td>
+                <button class="btn btn-warning" (click)="editFamilyMember(i)">Edit</button>
+                <button class="btn btn-danger" (click)="removeFamilyMember(i)">Remove</button>
+            </td>
+            </tr>
+        </tbody>
+            </table>
+    </div>
+
+    <div *ngIf="this.familyMembers.length > 0">
+        <button class="btn btn-primary" (click)="submitFamilyMembers()">Submit Members</button>
+    </div>
+    <hr>
+</div>
+<app-modal #successModal></app-modal>
+  

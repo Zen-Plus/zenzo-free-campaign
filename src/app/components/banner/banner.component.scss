@@ -1,0 +1,95 @@
+.banner {
+    width: 100%;
+    height: 25rem;
+    background: linear-gradient(#a80505, #223352);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.banner h1 {
+    margin: 0;
+    font-size: 5.5rem;
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+}
+
+.textarea {
+    transform: translateX(-65%);
+}
+
+.logo {
+    width: 100%;
+    margin: 2rem 1rem 1rem 2rem;
+}
+
+.banner-image {
+    position: absolute;
+    top: 0;
+    transform: translateX(-46%);
+    width: 69%;
+    height: auto;
+    object-fit: cover; /* Ensures the image covers the banner area */
+}
+
+/* Floating Icons */
+.floating-icons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Ensure icons are above other content */
+  }
+  
+  /* Icon styles */
+  .icon {
+    display: block;
+    margin-bottom: 10px;
+    background-color: #25d366; /* WhatsApp color */
+    color: white;
+    border-radius: 50%;
+    padding: 0.8rem;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .icon:hover {
+    background-color: #128c7e; /* Darker WhatsApp color on hover */
+}
+
+/* WhatsApp Icon - Specific color */
+.whatsapp {
+background-color: #25d366;
+}
+
+.whatsapp:hover {
+background-color: #128c7e;
+}
+
+/* Call Icon - Specific color */
+.call {
+background-color: #34b7f1; /* Blue color for call */
+}
+
+.call:hover {
+background-color: #007bff; /* Darker blue on hover */
+}
+
+/* Mail Icon - Specific color */
+.mail {
+background-color: #ea4335; /* Red color for mail */
+}
+
+.mail:hover {
+background-color: #d93025; /* Darker red on hover */
+}
+
+/* Icon positioning and spacing */
+.icon i {
+font-size: 20px;
+}
+  
