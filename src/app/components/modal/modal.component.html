@@ -10,9 +10,9 @@
         <div class="modal-body">
           <p>{{ successMessage }}</p>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer" *ngIf="modalType === 'success'">
           <button type="button" class="btn btn-secondary" *ngIf="reloadFlag" (click)="reloadForNewMember()">Add New</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Add Family Members</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" *ngIf="modalType === 'success'">Add Family Members</button>
         </div>
       </div>
     </div>

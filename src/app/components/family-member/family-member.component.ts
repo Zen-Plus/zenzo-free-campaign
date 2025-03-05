@@ -40,12 +40,14 @@ export class FamilyMemberComponent implements OnInit{
     this.familyMemberForm = this.fb.group({
       firstName: ['', Validators.required],
       dob: ['', Validators.required],
-      gender: ['', Validators.required],
-      mobileNumber: ['', Validators.required],
-      relationWithUser: ['', Validators.required],
-      existingChronicIllness: [''],
-      policyNumber: [''],
-      bloodGroup: ['']
+      gender: [null, Validators.required],
+      mobileNumber: [null, Validators.required],
+      relationWithUser: [null, Validators.required],
+      existingChronicIllness: [null],
+      policyNumber: [null],
+      bloodGroup: [null],
+      preferredDoctorName: [null],
+      preferredDoctorContact: [null]
     });
   }
   selectedChronicIllnesses: string[] = [];
@@ -131,7 +133,10 @@ export class FamilyMemberComponent implements OnInit{
       relationWithUser: member.relationWithUser,
       illness: this.selectedChronicIllnesses,
       policyNumber: member.policyNumber,
-      bloodGroup: member.bloodGroup
+      bloodGroup: member.bloodGroup,
+      preferredDoctorName: member.preferredDoctorName,
+      preferredDoctorContact: member.preferredDoctorContact
+
     });
   }
 

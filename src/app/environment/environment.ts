@@ -3,4 +3,5 @@ export const environment = {
     apiver: '/api/v1',
     memberEndpoint: '/free-users/',
     familyEndpoint: '/family-member',
+    loginEndpoint: '/auth/login'
 }

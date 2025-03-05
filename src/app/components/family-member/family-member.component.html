@@ -3,12 +3,12 @@
     <hr>
     <form [formGroup]="familyMemberForm" (ngSubmit)="addFamilyMember()">
         <div class="headerContainer">
-        <label for="InsuranceDetails" class="form-label heading">Family Members</label>
+        <label for="FamilyMembers" class="form-label heading">Family Members</label>
         </div>
         <div class="row">
         <div class="col-md-3 mb-3">
-            <label for="primaryDoctorName" class="form-label">Name</label>
-            <input type="text" id="primaryDoctorName" class="form-control" formControlName="firstName" name="primaryDoctorName">
+            <label for="firstName" class="form-label">Name</label>
+            <input type="text" id="firstName" class="form-control" formControlName="firstName" name="primaryDoctorName">
             <div *ngIf="familyMemberForm.get('firstName')?.invalid && familyMemberForm.get('firstName')?.touched">
                 <small class="text-danger">{{ errorMessages.requiredFiledError }}</small>
             </div>
@@ -42,8 +42,8 @@
             </select>
         </div>
         <div class="col-md-3 mb-3">
-            <label for="preferredHospital" class="form-label">Phone Number</label>
-            <input type="text" id="preferredHospital" class="form-control" formControlName="mobileNumber" name="preferredHospital">
+            <label for="mobileNumber" class="form-label">Phone Number</label>
+            <input type="text" id="mobileNumber" class="form-control" formControlName="mobileNumber" name="mobileNumber">
         </div>
         </div>
     
@@ -65,8 +65,8 @@
             </div>
             
             <div class="col-md-3 mb-3">
-                <label for="preferredHospital" class="form-label">Policy Number</label>
-                <input type="text" id="preferredHospital" class="form-control" formControlName="policyNumber" name="preferredHospital">
+                <label for="policyNumber" class="form-label">Policy Number</label>
+                <input type="text" id="policyNumber" class="form-control" formControlName="policyNumber" name="policyNumber">
             </div>
 
             <div class="col-md-3 mb-3">
@@ -86,12 +86,21 @@
                 </div>
             </div>
         </div>
-        <div style="display: flex; justify-content: space-around;">
-            <button type="submit" class="btn btn-primary">{{ isEditing ? 'Update Member' : 'Add Member' }}</button>
+        <div style="display: flex; justify-content: space-around;" class="row">
+            <div class="col-md-4 mb-3">
+                <label for="preferredDoctorName" class="form-label">Preferred Doctor Name</label>
+                <input type="text" id="preferredDoctorName" class="form-control" formControlName="preferredDoctorName" name="preferredDoctorName">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="preferredDoctorContact" class="form-label">Preferred Doctor Contact</label>
+                <input type="text" id="preferredDoctorContact" class="form-control" formControlName="preferredDoctorContact" name="preferredDoctorContact">
+            </div>
+            <div class="col-md-4 mb-3" style="display: flex; justify-content: space-around;">
+                <button type="submit" class="btn btn-primary">{{ isEditing ? 'Update Member' : 'Add Member' }}</button>
+            </div>
         </div>
     </form>
   
-  <!-- Family Members Table -->
     <div class="table-responsive mt-4" *ngIf="this.familyMembers.length > 0"> 
         <table class="table table-bordered">
         <thead>

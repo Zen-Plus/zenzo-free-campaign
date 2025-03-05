@@ -7,7 +7,7 @@
   <!-- Card to contain the form -->
   <div class="card">
     <div class="card-body">
-      <form [formGroup]="registrationForm">
+      <form [formGroup]="registrationForm" *ngIf="!primaryMemberData">
         
         <!-- First Row: 3 Columns -->
         <div class="row">
@@ -24,7 +24,7 @@
 
           <div class="col-md-4 mb-3">
             <label for="lastName" class="form-label">Last Name</label>
-            <input type="text" id="lastName" class="form-control" formControlName="firstName" name="lastName">
+            <input type="text" id="lastName" class="form-control" formControlName="lastName" name="lastName">
           </div>
 
           <div class="col-md-4 mb-3">
@@ -109,7 +109,6 @@
           </div>
         </div>
 
-        <!-- Fourth Row: 3 Columns -->
         <div class="row">
           
           <div class="col-md-3 mb-3">
@@ -157,15 +156,14 @@
             <input type="text" id="preferredHospital" class="form-control" formControlName="coverageType" name="preferredHospital">
           </div>
         </div>
-
-        <app-family-member [primaryMemberData]="primaryMemberData" *ngIf="this.primaryMemberData"></app-family-member>
-
         <div class="row" *ngIf="!this.primaryMemberData">
           <div class="col-md-12">
             <button type="submit" class="btn btn-primary" (click)="addPrimaryMember()" [disabled]="registrationForm.invalid">Submit</button>
           </div>
         </div>
       </form>
+      <app-family-member [primaryMemberData]="primaryMemberData" *ngIf="this.primaryMemberData"></app-family-member>
+
     </div>
   </div>
 </div>

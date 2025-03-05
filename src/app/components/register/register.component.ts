@@ -24,25 +24,25 @@ export class RegisterComponent {
   @ViewChild('successModal') successModal!: ModalComponent;
 
   registrationForm: FormGroup = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: [''],
-    dob: ['', Validators.required],
-    gender: [''],
-    address: ['', Validators.required],
-    phoneNumber: ['', Validators.required],
-    bloodGroup: [''],
-    chronicIllness: [''],
-    disabilities: [''],
-    medications: [''],
-    primaryDoctorName: [''],
-    primaryDoctorContact: [''],
-    preferredHospital: [''],
-    insuranceProvider: [''],
-    policyNumber: [''],
-    policyExpiry: [''],
-    coverageType: [''],
+    firstName: [null, Validators.required],
+    lastName: [null],
+    dob: [null, Validators.required],
+    gender: [null],
+    address: [null, Validators.required],
+    phoneNumber: [null, Validators.required],
+    bloodGroup: [null],
+    chronicIllness: [null],
+    disabilities: [null],
+    medications: [null],
+    primaryDoctorName: [null],
+    primaryDoctorContact: [null],
+    preferredHospital: [null],
+    insuranceProvider: [null],
+    policyNumber: [null],
+    policyExpiry: [null],
+    coverageType: [null],
   });
-  primaryMemberData: string = '';
+  primaryMemberData: string = '23';
   genderOptions = genderOptions;
   bloodGroupOptions = bloodGroupOptions;
   chronicIllnessesOptions = chronicIllnessesOptions;

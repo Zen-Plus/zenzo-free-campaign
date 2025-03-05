@@ -1,0 +1,72 @@
+.container {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.card {
+  width: 60%;
+}
+
+.card-body {
+  color: rgba(34, 51, 82, 1)
+
+}
+
+.heading {
+  font-size: 2rem !important;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  display: block;
+  align-items: center;
+  border: 2px solid #000;
+  border-radius: 1rem;
+  width: 50%;
+  border-color: rgba(221, 37, 37, 0.326);
+  color: rgba(240, 45, 45, 0.486)
+  // padding-left: 15px;
+  // padding-right: 15px;
+}
+
+button {
+  margin-top: 10px;
+}
+
+label {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+option, input, select {
+  font-size: 0.8rem;
+  font-weight: 400;
+  border-width: 2px;
+}
+
+input:focus {
+  box-shadow: 0 0 8px 4px rgba(221, 37, 37, 0.7);
+  border-color: rgba(221, 37, 37, 0.7);
+  outline: none;
+}
+
+button:hover {
+  box-shadow: 0 0 4px 2px rgba(221, 37, 37, 0.7);
+  background-color: #c10707;
+}
+
+button {
+  background-color: #c10707;
+  border-color: white;
+}
+
+button:disabled {
+  background-color: #f1f1f1;
+  color: #c10707;
+  cursor: not-allowed;
+}
+.headerContainer {
+  display: flex;
+  justify-content: space-around;
+}
