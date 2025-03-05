@@ -1,7 +1,7 @@
 <!-- <app-banner></app-banner> -->
 <div class="container">
   <div class="headerContainer">
-    <label for="Personaldetails" class="heading">Personal Details</label>
+    <label for="Personaldetails" class="heading" *ngIf="!primaryMemberData">Personal Details</label>
   </div>
 
   <!-- Card to contain the form -->

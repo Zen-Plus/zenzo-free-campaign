@@ -42,7 +42,7 @@ export class RegisterComponent {
     policyExpiry: [null],
     coverageType: [null],
   });
-  primaryMemberData: string = '23';
+  primaryMemberData: string = '';
   genderOptions = genderOptions;
   bloodGroupOptions = bloodGroupOptions;
   chronicIllnessesOptions = chronicIllnessesOptions;
